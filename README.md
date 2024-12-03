@@ -82,6 +82,7 @@ az vm create -n kube-controlplane -g $Kname \
 --image Ubuntu2204 \
 --vnet-name $Kname --subnet $Ksnet \
 --admin-username $Kuser \
+--generate-ssh-keys \
 --ssh-key-value @~/.ssh/id_rsa.pub \
 --size $Kvmsize \
 --nsg $Kname \
@@ -92,6 +93,7 @@ az vm create -n kube-worker -g $Kname \
 --image Ubuntu2204 \
 --vnet-name $Kname --subnet $Ksnet \
 --admin-username $Kuser \
+--generate-ssh-keys \
 --ssh-key-value @~/.ssh/id_rsa.pub \
 --size $Kvmsize \
 --nsg $Kname \
