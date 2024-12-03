@@ -139,8 +139,8 @@ ssh  $Kuser@$Kcontrolplaneip
 
 ```bash
 # Set version variable to be used when installing kubeadm, kubelet and kubectl
-export Kver='1.24.1-00'
-export Kvers='1.24.1'
+export Kver='1.31.3-1.1'
+export Kvers='1.31.3'
 
 sudo -- sh -c "echo $(hostname -i) $(hostname) >> /etc/hosts"
 sudo sed -i "/swap/s/^/#/" /etc/fstab
@@ -180,9 +180,9 @@ sudo systemctl status containerd
 #### Install kubeadm, kubelet, kubectl on control plane node
 ```bash
 
-sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo apt update
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo apt-get update
 sudo apt -y install kubelet=$Kver kubeadm=$Kver kubectl=$Kver
 
 sudo apt-mark hold kubelet kubeadm kubectl
