@@ -79,7 +79,7 @@ az network vnet subnet update \
 
 # Deploy Kubernetes control plane node VM
 az vm create -n kube-controlplane -g $Kname \
---image UbuntuLTS \
+--image Ubuntu2204 \
 --vnet-name $Kname --subnet $Ksnet \
 --admin-username $Kuser \
 --ssh-key-value @~/.ssh/id_rsa.pub \
@@ -89,7 +89,7 @@ az vm create -n kube-controlplane -g $Kname \
 
 # Deploy Kubernetes worker node VM
 az vm create -n kube-worker -g $Kname \
---image UbuntuLTS \
+--image Ubuntu2204 \
 --vnet-name $Kname --subnet $Ksnet \
 --admin-username $Kuser \
 --ssh-key-value @~/.ssh/id_rsa.pub \
